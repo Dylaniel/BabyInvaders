@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 7978341798547399368}
   - component: {fileID: -798630287196377885}
   - component: {fileID: 4988977340850301615}
-  m_Layer: 0
+  - component: {fileID: 600681801726739215}
+  m_Layer: 11
   m_Name: Bunny
   m_TagString: baby
   m_Icon: {fileID: 0}
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 7765f6422330e384b95e9c22f1c3fccd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -318,3 +319,24 @@ PolygonCollider2D:
       - {x: 0.79999995, y: 1.3349999}
       - {x: 0.78999996, y: 1.3249999}
       - {x: 0.77, y: 1.3249999}
+--- !u!50 &600681801726739215
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4101051496418249747}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

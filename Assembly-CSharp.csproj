@@ -8,9 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
-    <ProjectGuid>{18683D23-E1F6-47C0-2998-8455C91467D8}</ProjectGuid>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{FE0CFDB4-376B-BEC3-BFF3-894BAE3255A9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -58,10 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Emma.cs" />
+    <Compile Include="Assets\Scripts\EmmasTongue.cs" />
     <Compile Include="Assets\Scripts\Controller.cs" />
     <Compile Include="Assets\Scripts\Baby.cs" />
     <Compile Include="Assets\Scripts\Basket.cs" />
-    <Compile Include="Assets\Scripts\EmmasTongue.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

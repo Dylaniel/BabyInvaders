@@ -30,7 +30,7 @@ public class Basket : MonoBehaviour
 
             Debug.Log("the baby is: " + babySelected);
 
-            Instantiate()
+            Instantiate(BabyPrefabs[babySelected], transform.position, transform.rotation);
 
             numBabies--;
         }
