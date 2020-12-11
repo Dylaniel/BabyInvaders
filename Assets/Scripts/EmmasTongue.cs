@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class EmmasTongue : MonoBehaviour
 {
+    Controller controllerScript;
+
     private float speed = .10f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Controller controllerScript = GameObject.Find("Controller").GetComponent<Controller>();
     }
 
     // Update is called once per frame
@@ -30,6 +32,8 @@ public class EmmasTongue : MonoBehaviour
         if (!otherObject.gameObject.CompareTag("emma"))
         {
             Destroy(gameObject);
+
+            controllerScript.BabyKilled();
         }
 
         Debug.Log("hit");
