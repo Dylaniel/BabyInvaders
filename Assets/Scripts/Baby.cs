@@ -6,20 +6,34 @@ public class Baby : MonoBehaviour
 {
     float directionx;
     float directiony;
+    Vector2 direction;
+
+    Rigidbody2D rib;
 
     // Start is called before the first frame update
     void Start()
     {
         directionx = Random.Range(-5f, 5f);
         directiony = Random.Range(-5f, 5f);
-        Vector2 direction = new Vector2 (directionx, directiony);
+        direction = new Vector2 (directionx, directiony);
 
-        GetComponent<Rigidbody2D>().velocity = direction;
+        rib = GetComponent<Rigidbody2D>();
+        rib.velocity = direction;
     }
 
     // Update is called once per frame
     void Update()
     {
         //transform.Translate(directionx, directiony, 0);
+
+        // Don't let the velocity in either axis drop below the starting value
+        if (rib.velocity.magnitude < direction.magnitude)
+        {
+            Debug.Log(gameObject.name + " has slowed down");
+            // Speed up
+            rib.AddForce(rib.velocity / 5);
+            //rib.AddForce(new Vector2(directionx - rib.velocity.x, 0));
+            //rib.AddForce(new Vector2(0, directiony - rib.velocity.y));
+        }
     }
 }

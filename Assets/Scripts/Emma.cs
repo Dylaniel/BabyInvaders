@@ -4,25 +4,30 @@ using UnityEngine;
 
 public class Emma : MonoBehaviour
 {
+    private Rigidbody2D rib;
+
     public GameObject emmasTonguePrefab;
 
-    const float SPEED = .1f;
+    const float SPEED = 100f;
 
     // Start is called before the first frame update
     void Start()
     {
- 
+        rib = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float x = (Input.GetAxis("Horizontal") * SPEED);
-        float y = (Input.GetAxis("Vertical") * SPEED);
-        transform.Translate(x, y, 0);
+        float h = Input.GetAxis("Horizontal") * SPEED;
+        float v = Input.GetAxis("Vertical") * SPEED;
 
-        float inverseRotation = transform.rotation.z * -1 * 25;
-        transform.Rotate(0, 0, inverseRotation);
+        rib.AddForce(new Vector2(h, v));
+
+        // Find out how we're rotated and apply the inverse se Emma returns to "normal"
+        //float inverseRotation = transform.rotation.z * -1 * 25;
+        //transform.Rotate(0, 0, inverseRotation);
+        //rib.MoveRotation(0);
 
 
         if (Input.GetKeyDown("space"))
