@@ -22,4 +22,9 @@ public class Baby : MonoBehaviour
     {
         //transform.Translate(directionx, directiony, 0);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
+    }
 }
