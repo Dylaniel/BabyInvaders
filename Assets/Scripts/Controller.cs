@@ -14,7 +14,7 @@ public class Controller : MonoBehaviour
 
     private int score;
 
-    private bool gameOver;
+    public bool gameOver;
 
     public GameObject heartPrefab;
 
