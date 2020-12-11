@@ -53,7 +53,7 @@ public class Controller : MonoBehaviour
 
         gameover = false;
 
-        int babiesLeft = GameObject.FindGameObjectsWithTag("babies").Length;
+        int babiesLeft = GameObject.FindGameObjectsWithTag("baby").Length;
 
         if(babiesLeft <= 0)
         {

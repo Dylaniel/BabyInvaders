@@ -3,34 +3,27 @@
     <Files>
       <File FileName="Assets/Scripts/Emma.cs" Line="30" Column="31" />
       <File FileName="Assets/Scripts/Controller.cs" />
-      <File FileName="Assets/Scripts/Baby.cs" Line="32" Column="15" />
+      <File FileName="Assets/Scripts/Baby.cs" />
       <File FileName="Assets/Scripts/Basket.cs" />
-      <File FileName="Assets/Scripts/EmmasTongue.cs" Line="13" Column="55" />
+      <File FileName="Assets/Scripts/EmmasTongue.cs" Line="15" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="BabyInvaders" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="EmmasTongue.cs" selected="True" />
-              </Node>
+            <Node name="Assets" expanded="True" selected="True">
+              <Node name="Scripts" expanded="True" />
             </Node>
           </Node>
         </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="e7cb1c75-2980-4d7b-8647-0dec7f1006f8" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="17eb6d4b-3616-4f0f-b2c0-8e16585fe486" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/dshanaghy/src/github.com/Dylaniel/BabyInvaders/Assets/Scripts/EmmasTongue.cs" relfile="Assets/Scripts/EmmasTongue.cs" line="20" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

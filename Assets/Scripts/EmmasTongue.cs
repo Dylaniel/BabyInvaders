@@ -10,8 +10,7 @@ public class EmmasTongue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject go = GameObject.Find("Controller");
-        controllerScript = go.GetComponent<Controller>();
+        controllerScript = GameObject.Find("Controller").GetComponent<Controller>();
     }
 
     // Update is called once per frame
@@ -27,14 +26,14 @@ public class EmmasTongue : MonoBehaviour
             Destroy(otherObject.gameObject);
 
             //TODO: add code to increment score
-
+            controllerScript.BabyKilled();
         }
 
         if (!otherObject.gameObject.CompareTag("emma"))
         {
             Destroy(gameObject);
 
-            controllerScript.BabyKilled();
+            
         }
 
         Debug.Log("hit");
