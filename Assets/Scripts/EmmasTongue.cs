@@ -10,7 +10,8 @@ public class EmmasTongue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Controller controllerScript = GameObject.Find("Controller").GetComponent<Controller>();
+        GameObject go = GameObject.Find("Controller");
+        controllerScript = go.GetComponent<Controller>();
     }
 
     // Update is called once per frame

@@ -29,7 +29,7 @@ public class Baby : MonoBehaviour
         // Don't let the velocity in either axis drop below the starting value
         if (rib.velocity.magnitude < direction.magnitude)
         {
-            Debug.Log(gameObject.name + " has slowed down");
+            //Debug.Log(gameObject.name + " has slowed down");
             // Speed up
             rib.AddForce(rib.velocity / 5);
             //rib.AddForce(new Vector2(directionx - rib.velocity.x, 0));

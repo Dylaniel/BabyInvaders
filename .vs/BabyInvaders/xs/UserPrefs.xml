@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{FE0CFDB4-376B-BEC3-BFF3-894BAE3255A9}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Baby.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EmmasTongue.cs">
     <Files>
       <File FileName="Assets/Scripts/Emma.cs" Line="30" Column="31" />
-      <File FileName="Assets/Scripts/Controller.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Baby.cs" Line="34" Column="42" />
-      <File FileName="Assets/Scripts/Basket.cs" Line="31" Column="57" />
+      <File FileName="Assets/Scripts/Controller.cs" />
+      <File FileName="Assets/Scripts/Baby.cs" Line="32" Column="15" />
+      <File FileName="Assets/Scripts/Basket.cs" />
+      <File FileName="Assets/Scripts/EmmasTongue.cs" Line="13" Column="55" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,19 +13,24 @@
           <Node name="BabyInvaders" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Baby.cs" selected="True" />
+                <Node name="EmmasTongue.cs" selected="True" />
               </Node>
             </Node>
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="d446a1fd-e4bb-436f-a598-28dcbf8d0f75" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="e7cb1c75-2980-4d7b-8647-0dec7f1006f8" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/dshanaghy/src/github.com/Dylaniel/BabyInvaders/Assets/Scripts/EmmasTongue.cs" relfile="Assets/Scripts/EmmasTongue.cs" line="20" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>
