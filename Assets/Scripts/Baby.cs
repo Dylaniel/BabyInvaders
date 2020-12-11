@@ -36,4 +36,9 @@ public class Baby : MonoBehaviour
             //rib.AddForce(new Vector2(0, directiony - rib.velocity.y));
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
+    }
 }

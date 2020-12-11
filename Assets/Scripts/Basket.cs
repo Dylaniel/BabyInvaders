@@ -37,8 +37,6 @@ public class Basket : MonoBehaviour
         else
         {
             CancelInvoke("spawnBaby");
-
-            Debug.Log("all the babies are gone");
         }
     }
 }
