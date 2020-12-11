@@ -28,7 +28,7 @@ public class Basket : MonoBehaviour
         {
             int babySelected = Random.Range(0, BabyPrefabs.Length);
 
-            //Debug.Log("the baby is: " + babySelected);
+            Debug.Log("the baby is: " + babySelected);
 
             Instantiate(BabyPrefabs[babySelected], transform.position, transform.rotation);
 

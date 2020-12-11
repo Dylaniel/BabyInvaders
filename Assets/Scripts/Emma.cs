@@ -5,7 +5,7 @@ using UnityEngine;
 public class Emma : MonoBehaviour
 {
     private Rigidbody2D rib;
-
+    private Controller controllerScript;
     public GameObject emmasTonguePrefab;
 
     const float SPEED = 100f;
@@ -14,6 +14,8 @@ public class Emma : MonoBehaviour
     void Start()
     {
         rib = GetComponent<Rigidbody2D>();
+
+        controllerScript = GameObject.Find("Controller").GetComponent<Controller>();
     }
 
     // Update is called once per frame
@@ -37,6 +39,14 @@ public class Emma : MonoBehaviour
             pos.x -= .23f;
             pos.y -= .32f;
             Instantiate(emmasTonguePrefab, pos, transform.rotation);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("baby"))
+        {
+            controllerScript.EmmaHit();
         }
     }
 }

@@ -7,27 +7,39 @@ public class Controller : MonoBehaviour
     public Text scoreText;
     
     public Text levelText;
-    
-    public Text livesText;
 
-    public Text gameoverText;
+    public Text gameOverText, livesText;
 
     private int level;
 
-    private int lives;
-
     private int score;
 
-    private bool gameover;
+    private bool gameOver;
 
-    private int babiesLeft;
+    public GameObject heartPrefab;
+
+    private List<GameObject> lives;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        gameover = false;
+        gameOver = false;
 
         score = 0;
+
+        lives = new List<GameObject>();
+
+        Vector2 textPosition = livesText.transform.position;
+        Vector2 pos = new Vector2(textPosition.x + .25f, textPosition.y);
+
+        for (int i = 0; i<5; i++)
+        {
+            
+            GameObject newLife = Instantiate(heartPrefab, pos, Quaternion.identity);
+            lives.Add(newLife);
+            pos.x += newLife.GetComponent<Renderer> ().bounds.size.x;
+        }
 
     }
 
@@ -35,15 +47,33 @@ public class Controller : MonoBehaviour
     void Update()
     {
 
-        if (gameover == false)
+        if (gameOver == false)
         {
-            gameoverText.text = "";
+            gameOverText.text = "";
         }
         else
         {
-            gameoverText.text = "Game Over";
+            gameOverText.text = "Game Over";
         }
 
+    }
+
+    public void EmmaHit()
+    {
+        Debug.Log("emma was hit");
+
+        if(lives.Count > 0)
+        {
+
+            GameObject[] lifeObjects = lives.ToArray();
+            GameObject lifeGone = lifeObjects[lifeObjects.Length - 1];
+            Destroy(lifeGone);
+            lives.Remove(lifeGone);
+        }
+        if (lives.Count == 0)
+        {
+            gameOver = true;
+        }
     }
 
     public void BabyKilled()
@@ -51,7 +81,7 @@ public class Controller : MonoBehaviour
         score++;
         scoreText.text = "Score: " + score;
 
-        gameover = false;
+        gameOver = false;
 
         int babiesLeft = GameObject.FindGameObjectsWithTag("baby").Length;
 
