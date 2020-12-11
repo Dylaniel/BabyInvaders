@@ -2,8 +2,10 @@ Library/ArtifactDB
 Library/Artifacts
 Library/ShaderCache*
 Library/SourceAssetDB*
-Library/PackageManager/ProjectCache*
+Library/PackageManager/
 Library/StateCache/
+Library/PackageCache/
+Temp/
 
 *.log
 *.dll
