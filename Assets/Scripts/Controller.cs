@@ -20,42 +20,72 @@ public class Controller : MonoBehaviour
 
     private List<GameObject> lives;
 
+    public GameObject[] levels;
+
+    private Basket basket;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+        gameOverText.text = "";
+
         gameOver = false;
-
         score = 0;
-
+        level = -1;
         lives = new List<GameObject>();
 
         Vector2 textPosition = livesText.transform.position;
         Vector2 pos = new Vector2(textPosition.x + .25f, textPosition.y);
-
-        for (int i = 0; i<5; i++)
+        for (int i = 0; i < 5; i++)
         {
-            
             GameObject newLife = Instantiate(heartPrefab, pos, Quaternion.identity);
             lives.Add(newLife);
-            pos.x += newLife.GetComponent<Renderer> ().bounds.size.x;
+            pos.x += newLife.GetComponent<Renderer>().bounds.size.x;
         }
 
+        foreach (GameObject goLevel in levels)
+        {
+            goLevel.SetActive(false);
+        }
+
+        activateNextLevel();
+    }
+
+    private void findBasket()
+    {
+        GameObject currentLevel = levels[level];
+        basket = GameObject.Find(currentLevel.name + "/Basket").GetComponent<Basket>();
     }
 
     // Update is called once per frame
     void Update()
     {
+    
+    }
 
-        if (gameOver == false)
+    private void activateNextLevel()
+    {
+        if (level < (levels.Length - 1))
         {
-            gameOverText.text = "";
+            if (level >= 0)
+            {
+                levels[level].SetActive(false);
+            }
+
+            level++;
+            levels[level].SetActive(true);
+            levelText.text = "Level: " + (level + 1);
+
+            findBasket();
         }
         else
         {
-            gameOverText.text = "Game Over";
+            gameOverText.text = "you won";
+            Debug.Log("you won!!");
+            gameOver = true;
         }
-
     }
 
     public void EmmaHit()
@@ -73,6 +103,7 @@ public class Controller : MonoBehaviour
         if (lives.Count == 0)
         {
             gameOver = true;
+            gameOverText.text = "Game Over";
         }
     }
 
@@ -85,13 +116,13 @@ public class Controller : MonoBehaviour
 
         int babiesLeft = GameObject.FindGameObjectsWithTag("baby").Length;
 
-        if(babiesLeft <= 0)
+        Debug.Log("baby killed. babies left=" + babiesLeft);
+
+        if (basket.BabiesDone && babiesLeft <= 0)
         {
             Debug.Log("No Babies Left");
 
-            level++;
-
-            levelText.text = "Level: " + level;
+            activateNextLevel();
         }
     }
 }

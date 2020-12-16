@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1215896216271239184}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.624246, y: -1.0398201, z: 0}
-  m_LocalScale: {x: 0.23124874, y: 0.30947024, z: 1}
+  m_LocalScale: {x: 0.23124874, y: 0.2312487, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -69,9 +69,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -2091545975
+  m_SortingLayer: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6fa77194e34884f49b26b1427b1da554, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -98,3 +98,6 @@ MonoBehaviour:
   BabyPrefabs:
   - {fileID: 4101051496418249747, guid: be643b7edd41249408ad915f2e4a3cdb, type: 3}
   - {fileID: 7076122944399865593, guid: 1cb5c40a5b02e6b4db474db3a8c27a65, type: 3}
+  - {fileID: 3339646368995523569, guid: 1f6585b362a97304abe4bfc7e40f1ceb, type: 3}
+  - {fileID: 2587566917343130352, guid: 23cc028c671c6854388316e0346c7a66, type: 3}
+  numBabies: 0

@@ -7,6 +7,7 @@ public class Emma : MonoBehaviour
     private Rigidbody2D rib;
     private Controller controllerScript;
     public GameObject emmasTonguePrefab;
+    private float lastFiredTime;
 
     const float SPEED = 100f;
 
@@ -33,15 +34,29 @@ public class Emma : MonoBehaviour
         {
             rib.AddForce(new Vector2(h, v));
 
-            if (Input.GetKeyDown("space"))
+            if (Input.GetKeyDown("space") && allowedFire())
             {
                 Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
                 //adjust the position of the tongue so it matches the sprite
                 pos.x -= .23f;
                 pos.y -= .32f;
                 Instantiate(emmasTonguePrefab, pos, transform.rotation);
+                lastFiredTime = Time.time;
             }
+        }   
+    }
+
+    private bool allowedFire()
+    {
+        if(Time.time >= lastFiredTime + .75f)
+        {
+            return true;
         }
+        else
+        {
+            return false;
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

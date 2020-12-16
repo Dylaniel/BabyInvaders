@@ -8,10 +8,16 @@ public class Basket : MonoBehaviour
 
     public int numBabies;
 
+    private bool babiesDone = false;
+    public bool BabiesDone
+    {
+        get { return babiesDone; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        numBabies = 5;
+        Debug.Log("basket starting");
 
         InvokeRepeating("spawnBaby", 1f, 1f);
     }
@@ -28,15 +34,17 @@ public class Basket : MonoBehaviour
         {
             int babySelected = Random.Range(0, BabyPrefabs.Length);
 
-            Debug.Log("the baby is: " + babySelected);
+            //Debug.Log("the baby is: " + babySelected);
 
             Instantiate(BabyPrefabs[babySelected], transform.position, transform.rotation);
 
             numBabies--;
         }
-        else
+        if (numBabies == 0)
         {
             CancelInvoke("spawnBaby");
+
+            babiesDone = true;
         }
     }
 }

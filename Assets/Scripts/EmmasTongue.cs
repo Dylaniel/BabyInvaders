@@ -23,6 +23,7 @@ public class EmmasTongue : MonoBehaviour
     {
         if (otherObject.gameObject.CompareTag("baby"))
         {
+            otherObject.gameObject.SetActive(false);
             Destroy(otherObject.gameObject);
 
             //TODO: add code to increment score
@@ -36,6 +37,6 @@ public class EmmasTongue : MonoBehaviour
             
         }
 
-        Debug.Log("hit");
+        //Debug.Log("hit");
     }
 }
