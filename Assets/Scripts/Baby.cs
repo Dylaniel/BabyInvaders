@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Baby : MonoBehaviour
 {
+    Controller controllerScript;
+
     float directionx;
     float directiony;
     Vector2 direction;
 
     Rigidbody2D rib;
+
+    bool escaped = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +23,8 @@ public class Baby : MonoBehaviour
 
         rib = GetComponent<Rigidbody2D>();
         rib.velocity = direction;
+
+        controllerScript = GameObject.Find("Controller").GetComponent<Controller>();
     }
 
     // Update is called once per frame
@@ -39,6 +45,9 @@ public class Baby : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        gameObject.SetActive(false);
         Destroy(gameObject);
+
+        controllerScript.BabyEscaped();
     }
 }

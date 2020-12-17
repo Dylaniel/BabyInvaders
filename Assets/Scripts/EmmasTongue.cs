@@ -33,8 +33,6 @@ public class EmmasTongue : MonoBehaviour
         if (!otherObject.gameObject.CompareTag("emma"))
         {
             Destroy(gameObject);
-
-            
         }
 
         //Debug.Log("hit");

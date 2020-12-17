@@ -62,7 +62,10 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
     }
 
     private void activateNextLevel()
@@ -107,16 +110,23 @@ public class Controller : MonoBehaviour
         }
     }
 
+    public void BabyEscaped()
+    {
+        checkEndOfLevel("baby escaped");
+    }
+
     public void BabyKilled()
     {
         score++;
         scoreText.text = "Score: " + score;
 
-        gameOver = false;
+        checkEndOfLevel("baby killed");
+    }
 
+    private void checkEndOfLevel (string message)
+    {
         int babiesLeft = GameObject.FindGameObjectsWithTag("baby").Length;
-
-        Debug.Log("baby killed. babies left=" + babiesLeft);
+        Debug.Log(message + ", babies left=" + babiesLeft);
 
         if (basket.BabiesDone && babiesLeft <= 0)
         {
