@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Baby : MonoBehaviour
 {
+    private const float MAX_SPEED = 9999999999999;
+
     Controller controllerScript;
 
     float directionx;
@@ -13,6 +15,7 @@ public class Baby : MonoBehaviour
     Rigidbody2D rib;
 
     bool escaped = false;
+    public bool ShouldLog = false;
 
     // Start is called before the first frame update
     void Start()
@@ -30,16 +33,29 @@ public class Baby : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.Translate(directionx, directiony, 0);
+        float curSpeed = rib.velocity.magnitude;
 
-        // Don't let the velocity in either axis drop below the starting value
-        if (rib.velocity.magnitude < direction.magnitude)
+        if (curSpeed > MAX_SPEED)
         {
+            float scaleFactor = (MAX_SPEED / curSpeed);
+
+            Vector2 newV = rib.velocity;
+            newV.Scale(new Vector2(scaleFactor, scaleFactor));
+            rib.velocity = newV;
+
+            if (ShouldLog)
+            {
+                Debug.Log(gameObject.name + " speed is " + curSpeed + " will scale down by " +
+                    scaleFactor + ". New speed is " + rib.velocity.magnitude);
+            }
+
+        }
+        else if (curSpeed < direction.magnitude)
+        {
+            // Don't let the velocity in either axis drop below the starting value
             //Debug.Log(gameObject.name + " has slowed down");
             // Speed up
             rib.AddForce(rib.velocity / 5);
-            //rib.AddForce(new Vector2(directionx - rib.velocity.x, 0));
-            //rib.AddForce(new Vector2(0, directiony - rib.velocity.y));
         }
     }
 
