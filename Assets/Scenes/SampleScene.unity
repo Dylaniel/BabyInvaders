@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 82688534}
   - component: {fileID: 82688536}
   - component: {fileID: 82688535}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: door (1)
   m_TagString: door
   m_Icon: {fileID: 0}
@@ -1071,7 +1071,7 @@ GameObject:
   - component: {fileID: 205616802}
   m_Layer: 8
   m_Name: door (1)
-  m_TagString: Untagged
+  m_TagString: door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2263,7 +2263,7 @@ GameObject:
   - component: {fileID: 693205180}
   m_Layer: 8
   m_Name: door
-  m_TagString: Untagged
+  m_TagString: door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2370,7 +2370,7 @@ GameObject:
   - component: {fileID: 770421330}
   - component: {fileID: 770421332}
   - component: {fileID: 770421331}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: door
   m_TagString: door
   m_Icon: {fileID: 0}
@@ -4364,7 +4364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1274316456
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5373,7 +5373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!68 &1749701403
 EdgeCollider2D:
   m_ObjectHideFlags: 0

@@ -33,7 +33,7 @@ public class Controller : MonoBehaviour
 
         gameOver = false;
         score = 0;
-        level = 0;
+        level = -1;
         lives = new List<GameObject>();
 
         Vector2 textPosition = livesText.transform.position;
