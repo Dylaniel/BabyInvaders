@@ -2,40 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Controller : MonoBehaviour
 {
-    public Text scoreText;
-    
-    public Text levelText;
-
-    public Text gameOverText, livesText;
+    public Text scoreText, levelText, gameOverText, livesText;
 
     private int level;
-
     private int score;
-
     public bool gameOver;
 
+    public GameObject root;
+    public GameObject[] babies;
     public GameObject heartPrefab;
-
-    private List<GameObject> lives;
-
-    public GameObject[] levels;
+    private List<GameObject> lives = new List<GameObject>();
 
     private Basket basket;
+    
+    public GameObject manager;
+    Manager managerScript;
+    private AsyncOperation sceneLoading;
 
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        gameOverText.text = "";
+        managerScript = manager.GetComponent<Manager>();
 
+        gameOverText.text = "";
         gameOver = false;
         score = 0;
-        level = -1;
-        lives = new List<GameObject>();
-
+        
         Vector2 textPosition = livesText.transform.position;
         Vector2 pos = new Vector2(textPosition.x + .25f, textPosition.y);
         for (int i = 0; i < 5; i++)
@@ -45,43 +40,103 @@ public class Controller : MonoBehaviour
             pos.x += newLife.GetComponent<Renderer>().bounds.size.x;
         }
 
-        foreach (GameObject goLevel in levels)
+        activateFirstLevel();
+
+        Debug.Log("controller is enabled");
+    }
+
+    private void OnDisable()
+    {
+        foreach (GameObject life in lives)
         {
-            goLevel.SetActive(false);
+            Destroy(life);
         }
 
+        lives.Clear();
+
+        Debug.Log("controller is disabled");
+    }
+
+    private void activateFirstLevel()
+    {
+        level = 0;
         activateNextLevel();
     }
 
-    private void findBasket()
+    void OnGUI()
     {
-        GameObject currentLevel = levels[level];
-        basket = GameObject.Find(currentLevel.name + "/Basket").GetComponent<Basket>();
+        if (managerScript.CurrentState != GameState.paused)
+        {
+            if (Event.current.Equals(Event.KeyboardEvent(KeyCode.Escape.ToString())))
+            {
+                Debug.Log("Escape key is pressed.");
+
+                managerScript.ShowPause();
+
+                root = GameObject.FindGameObjectWithTag("Root");
+                babies = GameObject.FindGameObjectsWithTag("baby");
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Pause()
     {
-        if (Input.GetKey("escape"))
+        root.SetActive(false);
+        foreach (GameObject baby in babies)
         {
-            Application.Quit();
+            baby.SetActive(false);
+        }
+    }
+
+    public void UnPause()
+    {
+        root.SetActive(true);
+        foreach (GameObject baby in babies)
+        {
+            baby.SetActive(true);
+        }
+    }
+
+
+    private void findBasket()
+    {
+        GameObject basketObject = GameObject.Find("Basket");
+
+        basket = basketObject.GetComponent<Basket>();
+    }
+
+    private void Update()
+    {
+        if (sceneLoading != null && sceneLoading.isDone)
+        {
+            findBasket();
+            sceneLoading = null;
         }
     }
 
     private void activateNextLevel()
     {
-        if (level < (levels.Length - 1))
+        if (level <= 3)
         {
-            if (level >= 0)
+            if (level == 0)
             {
-                levels[level].SetActive(false);
+                sceneLoading = managerScript.ChangeScene("Laundry Room");
+            }
+            else if (level == 1)
+            {
+                sceneLoading = managerScript.ChangeScene("Kitchen Room");
+            }
+            else if (level == 2)
+            {
+                sceneLoading = managerScript.ChangeScene("Living Room");
+            }
+            else if (level == 3)
+            {
+                sceneLoading = managerScript.ChangeScene("Hallway Room");
             }
 
             level++;
-            levels[level].SetActive(true);
             levelText.text = "Level: " + (level + 1);
-
-            findBasket();
         }
         else
         {

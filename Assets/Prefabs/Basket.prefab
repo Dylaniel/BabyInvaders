@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0fa00ebb75ee948b2094bbcd076a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 3987550742439836711, guid: b78fd57c37bfac5439c90a36eb84b05d, type: 3}
   BabyPrefabs:
   - {fileID: 4101051496418249747, guid: be643b7edd41249408ad915f2e4a3cdb, type: 3}
   - {fileID: 7076122944399865593, guid: 1cb5c40a5b02e6b4db474db3a8c27a65, type: 3}

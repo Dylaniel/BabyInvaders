@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Manager.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Laundry Room.unity
+    guid: f7fa920bec64cdf40bc05e263a2171ad
+  - enabled: 1
+    path: Assets/Scenes/Living Room.unity
+    guid: 17b3c645c58b29f43801d51474d71b6b
+  - enabled: 1
+    path: Assets/Scenes/Kitchen Room.unity
+    guid: 7bad58d2410ae4e4b92f8b1161846e14
+  - enabled: 1
+    path: Assets/Scenes/Hallway Room.unity
+    guid: 6f016634ca9dae54a94889cbe278ff15
   m_configObjects: {}

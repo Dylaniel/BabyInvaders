@@ -30,6 +30,18 @@ public class Baby : MonoBehaviour
         controllerScript = GameObject.Find("Controller").GetComponent<Controller>();
     }
 
+    private void OnEnable()
+    {
+        directionx = Random.Range(-5f, 5f);
+        directiony = Random.Range(-5f, 5f);
+        direction = new Vector2(directionx, directiony);
+
+        rib = GetComponent<Rigidbody2D>();
+        rib.velocity = direction;
+
+        controllerScript = GameObject.Find("Controller").GetComponent<Controller>();
+    }
+
     // Update is called once per frame
     void Update()
     {

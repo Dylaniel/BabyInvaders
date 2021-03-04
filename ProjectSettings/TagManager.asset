@@ -8,6 +8,8 @@ TagManager:
   - emma
   - door
   - Room
+  - Root
+  - controller
   layers:
   - Default
   - TransparentFX
@@ -48,9 +50,9 @@ TagManager:
   - name: background
     uniqueID: 2203421321
     locked: 0
-  - name: ui
-    uniqueID: 1722728689
-    locked: 0
   - name: movingobject
     uniqueID: 2834773755
+    locked: 0
+  - name: ui
+    uniqueID: 1722728689
     locked: 0

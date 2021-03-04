@@ -22,11 +22,16 @@ public class Basket : MonoBehaviour
         InvokeRepeating("spawnBaby", 1f, 1f);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        CancelInvoke("spawnBaby");
     }
+
+    private void OnEnable()
+    {
+        InvokeRepeating("spawnBaby", 1f, 1f);
+    }
+    
 
     private void spawnBaby()
     {
