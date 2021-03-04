@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -148,5 +149,10 @@ public class Manager : MonoBehaviour
         Debug.Log(mode);
 
         SceneManager.SetActiveScene(scene);
+    }
+
+    internal void TheGameIsOver()
+    {
+        Invoke("GoToCredits", 5f);
     }
 }

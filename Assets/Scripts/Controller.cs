@@ -38,6 +38,8 @@ public class Controller : MonoBehaviour
             GameObject newLife = Instantiate(heartPrefab, pos, Quaternion.identity);
             lives.Add(newLife);
             pos.x += newLife.GetComponent<Renderer>().bounds.size.x;
+
+            newLife.transform.parent = managerScript.HUD.transform;
         }
 
         activateFirstLevel();
@@ -59,7 +61,7 @@ public class Controller : MonoBehaviour
 
     private void activateFirstLevel()
     {
-        level = 0;
+        level = 1;
         activateNextLevel();
     }
 
@@ -73,7 +75,7 @@ public class Controller : MonoBehaviour
 
                 managerScript.ShowPause();
 
-                root = GameObject.FindGameObjectWithTag("Root");
+                
                 babies = GameObject.FindGameObjectsWithTag("baby");
             }
         }
@@ -82,21 +84,17 @@ public class Controller : MonoBehaviour
     public void Pause()
     {
         root.SetActive(false);
-        foreach (GameObject baby in babies)
-        {
-            baby.SetActive(false);
-        }
     }
 
     public void UnPause()
     {
         root.SetActive(true);
-        foreach (GameObject baby in babies)
-        {
-            baby.SetActive(true);
-        }
     }
 
+    private void FindRoot()
+    {
+        root = GameObject.FindGameObjectWithTag("Root");
+    }
 
     private void findBasket()
     {
@@ -110,39 +108,41 @@ public class Controller : MonoBehaviour
         if (sceneLoading != null && sceneLoading.isDone)
         {
             findBasket();
+            FindRoot();
             sceneLoading = null;
         }
     }
 
     private void activateNextLevel()
     {
-        if (level <= 3)
+        if (level <= 4)
         {
-            if (level == 0)
+            if (level == 1)
             {
                 sceneLoading = managerScript.ChangeScene("Laundry Room");
             }
-            else if (level == 1)
+            else if (level == 2)
             {
                 sceneLoading = managerScript.ChangeScene("Kitchen Room");
             }
-            else if (level == 2)
+            else if (level == 3)
             {
                 sceneLoading = managerScript.ChangeScene("Living Room");
             }
-            else if (level == 3)
+            else if (level == 4)
             {
                 sceneLoading = managerScript.ChangeScene("Hallway Room");
             }
 
             level++;
-            levelText.text = "Level: " + (level + 1);
+            levelText.text = "Level: " + (level);
         }
         else
         {
             gameOverText.text = "you won";
             Debug.Log("you won!!");
             gameOver = true;
+            managerScript.TheGameIsOver();
         }
     }
 

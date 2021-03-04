@@ -1977,6 +1977,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basket
       objectReference: {fileID: 0}
+    - target: {fileID: 1215896216271239184, guid: 6de7e4aabfbcf1249b590cb33b3496fe, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 1215896216271239185, guid: 6de7e4aabfbcf1249b590cb33b3496fe, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -41,7 +41,10 @@ public class Basket : MonoBehaviour
 
             //Debug.Log("the baby is: " + babySelected);
 
-            Instantiate(BabyPrefabs[babySelected], transform.position, transform.rotation);
+            GameObject newBaby = Instantiate(BabyPrefabs[babySelected],
+                transform.position, transform.rotation);
+
+            newBaby.transform.parent = gameObject.transform;
 
             numBabies--;
         }
