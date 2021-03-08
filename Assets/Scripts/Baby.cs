@@ -17,6 +17,8 @@ public class Baby : MonoBehaviour
     bool escaped = false;
     public bool ShouldLog = false;
 
+    AudioSource squeak;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,8 @@ public class Baby : MonoBehaviour
 
         rib = GetComponent<Rigidbody2D>();
         rib.velocity = direction;
+
+        squeak = gameObject.GetComponent<AudioSource>();
 
         controllerScript = GameObject.Find("Controller").GetComponent<Controller>();
     }
@@ -68,6 +72,14 @@ public class Baby : MonoBehaviour
             //Debug.Log(gameObject.name + " has slowed down");
             // Speed up
             rib.AddForce(rib.velocity / 5);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (squeak.isPlaying == false)
+        {
+            squeak.Play();
         }
     }
 

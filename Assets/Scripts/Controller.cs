@@ -10,6 +10,8 @@ public class Controller : MonoBehaviour
     private int level;
     private int score;
     public bool gameOver;
+    private float spawnRate;
+    public int [] nBabies;
 
     public GameObject root;
     public GameObject[] babies;
@@ -22,9 +24,10 @@ public class Controller : MonoBehaviour
     Manager managerScript;
     private AsyncOperation sceneLoading;
 
-
     private void OnEnable()
     {
+        nBabies = new int[4];
+
         managerScript = manager.GetComponent<Manager>();
 
         gameOverText.text = "";
@@ -57,6 +60,37 @@ public class Controller : MonoBehaviour
         lives.Clear();
 
         Debug.Log("controller is disabled");
+    }
+
+    public void SetDifficulty(string difficulty)
+    {
+        if (difficulty == "Easy")
+        {
+            spawnRate = 1.5f;
+
+            nBabies[0] = 10;
+            nBabies[1] = 20;
+            nBabies[2] = 25;
+            nBabies[3] = 25;
+        }
+        else if (difficulty == "Medium")
+        {
+            spawnRate = 1f;
+            
+            nBabies[0] = 10;
+            nBabies[1] = 25;
+            nBabies[2] = 30;
+            nBabies[3] = 30;
+        }
+        else if (difficulty == "Hard")
+        {
+            spawnRate = .75f;
+
+            nBabies[0] = 10;
+            nBabies[1] = 30;
+            nBabies[2] = 40;
+            nBabies[3] = 40;
+        }
     }
 
     private void activateFirstLevel()
@@ -101,6 +135,8 @@ public class Controller : MonoBehaviour
         GameObject basketObject = GameObject.Find("Basket");
 
         basket = basketObject.GetComponent<Basket>();
+
+        basket.ApplyDifficulty(nBabies[level-2],spawnRate);
     }
 
     private void Update()
@@ -135,7 +171,7 @@ public class Controller : MonoBehaviour
             }
 
             level++;
-            levelText.text = "Level: " + (level);
+            levelText.text = "Level: " + (level - 1);
         }
         else
         {

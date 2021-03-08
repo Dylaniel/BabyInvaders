@@ -6,7 +6,9 @@ public class Basket : MonoBehaviour
 {
     public GameObject[] BabyPrefabs;
 
-    public int numBabies;
+    private int numBabies;
+
+    private float spawnRate;
 
     private bool babiesDone = false;
     public bool BabiesDone
@@ -18,8 +20,6 @@ public class Basket : MonoBehaviour
     void Start()
     {
         Debug.Log("basket starting");
-
-        InvokeRepeating("spawnBaby", 1f, 1f);
     }
 
     private void OnDisable()
@@ -29,9 +29,24 @@ public class Basket : MonoBehaviour
 
     private void OnEnable()
     {
-        InvokeRepeating("spawnBaby", 1f, 1f);
+        //we will be enabled when the game starts and after we unpause
+        //when the game starts the spawnrate will be zero because apply
+        //difficulty hasn't been called yet
+        if (spawnRate != 0)
+        {
+            InvokeRepeating("spawnBaby", 1f, spawnRate);
+        }
     }
     
+    public void ApplyDifficulty(int numBabies, float spawnRate)
+    {
+        this.numBabies = numBabies;
+        this.spawnRate = spawnRate;
+
+        InvokeRepeating("spawnBaby", 1f, spawnRate);
+
+
+    }
 
     private void spawnBaby()
     {
@@ -40,6 +55,7 @@ public class Basket : MonoBehaviour
             int babySelected = Random.Range(0, BabyPrefabs.Length);
 
             //Debug.Log("the baby is: " + babySelected);
+            Debug.Log("There are " + numBabies + "babies left");
 
             GameObject newBaby = Instantiate(BabyPrefabs[babySelected],
                 transform.position, transform.rotation);

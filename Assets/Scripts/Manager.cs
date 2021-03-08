@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public enum GameState
 {
@@ -17,6 +18,10 @@ public class Manager : MonoBehaviour
     public GameObject MainMenu;
     public GameObject Pause;
     public GameObject Credits;
+
+    public Toggle easyToggle;
+    public Toggle mediumToggle;
+    public Toggle hardToggle;
 
     public GameObject ControllerObj;
 
@@ -79,6 +84,19 @@ public class Manager : MonoBehaviour
         state = GameState.playing;
 
         ControllerObj.SetActive(true);
+
+        if (easyToggle.isOn)
+        {
+            controllerScript.SetDifficulty("Easy");
+        }
+        else if (mediumToggle.isOn)
+        {
+            controllerScript.SetDifficulty("Medium");
+        }
+        else if (hardToggle.isOn)
+        {
+            controllerScript.SetDifficulty("Hard");
+        }
     }
 
     public void ShowPause()

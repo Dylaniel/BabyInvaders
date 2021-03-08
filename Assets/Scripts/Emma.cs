@@ -9,12 +9,16 @@ public class Emma : MonoBehaviour
     public GameObject emmasTonguePrefab;
     private float lastFiredTime;
 
+    private AudioSource lick;
+
     const float SPEED = 100f;
 
     // Start is called before the first frame update
     void Start()
     {
         rib = GetComponent<Rigidbody2D>();
+
+        lick = gameObject.GetComponent<AudioSource>();
 
         controllerScript = GameObject.Find("Controller").GetComponent<Controller>();
     }
@@ -42,6 +46,11 @@ public class Emma : MonoBehaviour
                 pos.y -= .32f;
                 Instantiate(emmasTonguePrefab, pos, transform.rotation);
                 lastFiredTime = Time.time;
+                
+                if (lick.isPlaying == false)
+                {
+                    lick.Play();
+                }
             }
         }   
     }

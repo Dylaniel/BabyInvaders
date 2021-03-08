@@ -2582,6 +2582,9 @@ MonoBehaviour:
   MainMenu: {fileID: 1506673662}
   Pause: {fileID: 2040403571}
   Credits: {fileID: 1099814400}
+  easyToggle: {fileID: 1935557806}
+  mediumToggle: {fileID: 1823413053}
+  hardToggle: {fileID: 1127142070}
   ControllerObj: {fileID: 21099665}
 --- !u!4 &1839571257
 Transform:
