@@ -9,7 +9,9 @@ public class Emma : MonoBehaviour
     public GameObject emmasTonguePrefab;
     private float lastFiredTime;
 
-    private AudioSource lick;
+    private AudioSource audioSource;
+    public AudioClip whimper;
+    public AudioClip lick;
 
     const float SPEED = 100f;
 
@@ -18,7 +20,7 @@ public class Emma : MonoBehaviour
     {
         rib = GetComponent<Rigidbody2D>();
 
-        lick = gameObject.GetComponent<AudioSource>();
+        audioSource = gameObject.GetComponent<AudioSource>();
 
         controllerScript = GameObject.Find("Controller").GetComponent<Controller>();
     }
@@ -47,9 +49,10 @@ public class Emma : MonoBehaviour
                 Instantiate(emmasTonguePrefab, pos, transform.rotation);
                 lastFiredTime = Time.time;
                 
-                if (lick.isPlaying == false)
+                if (audioSource.isPlaying == false)
                 {
-                    lick.Play();
+                    audioSource.clip = lick;
+                    audioSource.Play();
                 }
             }
         }   
@@ -70,9 +73,12 @@ public class Emma : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("baby"))
+        if (controllerScript.gameOver==false && collision.gameObject.CompareTag("baby"))
         {
             controllerScript.EmmaHit();
+            
+            audioSource.clip = whimper;
+            audioSource.Play();
         }
     }
 }

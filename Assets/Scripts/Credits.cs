@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Credits : MonoBehaviour
 {
+    public GameObject manager;
+    private Manager managerScript;
+
 
     private void OnEnable()
     {
-        Invoke("CreditsExit", 15);
+        gameObject.transform.position = new Vector2(1.485165f, -7.562866f);
+        managerScript = manager.GetComponent<Manager>();
+        Invoke("CreditsExit", 25);
     }
 
     private void FixedUpdate()
@@ -17,6 +22,6 @@ public class Credits : MonoBehaviour
 
     public void CreditsExit()
     {
-        Application.Quit();
+        managerScript.GoToMainMenu();
     }
 }

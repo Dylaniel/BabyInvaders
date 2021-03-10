@@ -131,6 +131,12 @@ public class Manager : MonoBehaviour
         Credits.SetActive(true);
 
         state = GameState.credits;
+        
+        if (currentScene != null)
+        {
+            StartCoroutine(UnloadScene(currentScene));
+            currentScene = null;
+        }
     }
 
     public AsyncOperation ChangeScene(string newScene)

@@ -10,6 +10,7 @@ TagManager:
   - Room
   - Root
   - controller
+  - waypoint
   layers:
   - Default
   - TransparentFX

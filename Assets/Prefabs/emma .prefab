@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emmasTonguePrefab: {fileID: 6719598922287215123, guid: 556a45b5f023cce4d9d3a4cb8b72b298, type: 3}
+  whimper: {fileID: 8300000, guid: 46be1b7ffc2ea62418a28f04e9263a74, type: 3}
+  lick: {fileID: 8300000, guid: 46cfba7841234fd46957d7ea3d179003, type: 3}
 --- !u!50 &1096215747965947950
 Rigidbody2D:
   serializedVersion: 4

@@ -24,7 +24,7 @@ public class Baby : MonoBehaviour
     {
         directionx = Random.Range(-5f, 5f);
         directiony = Random.Range(-5f, 5f);
-        direction = new Vector2 (directionx, directiony);
+        direction = new Vector2(directionx, directiony);
 
         rib = GetComponent<Rigidbody2D>();
         rib.velocity = direction;
@@ -32,6 +32,8 @@ public class Baby : MonoBehaviour
         squeak = gameObject.GetComponent<AudioSource>();
 
         controllerScript = GameObject.Find("Controller").GetComponent<Controller>();
+
+        Invoke("GoToDoor", 0f);
     }
 
     private void OnEnable()
@@ -89,5 +91,12 @@ public class Baby : MonoBehaviour
         Destroy(gameObject);
 
         controllerScript.BabyEscaped();
+    }
+
+    private void GoToDoor()
+    {
+        GameObject.FindGameObjectWithTag("waypoint");
+
+        
     }
 }
