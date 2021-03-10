@@ -8,12 +8,16 @@ public class Baby : MonoBehaviour
 
     Controller controllerScript;
 
+    private GameObject bestDoor;
+
     float directionx;
     float directiony;
     Vector2 direction;
 
     Rigidbody2D rib;
 
+    private bool foundWaypoint;
+        
     bool escaped = false;
     public bool ShouldLog = false;
 
@@ -33,7 +37,7 @@ public class Baby : MonoBehaviour
 
         controllerScript = GameObject.Find("Controller").GetComponent<Controller>();
 
-        Invoke("GoToDoor", 0f);
+        Invoke("FindSuitableDoor", 18f);
     }
 
     private void OnEnable()
@@ -51,29 +55,41 @@ public class Baby : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ManageSpeed();
+    }
+
+    private void ManageSpeed()
+    {
         float curSpeed = rib.velocity.magnitude;
 
-        if (curSpeed > MAX_SPEED)
+        if (foundWaypoint == false)
         {
-            float scaleFactor = (MAX_SPEED / curSpeed);
-
-            Vector2 newV = rib.velocity;
-            newV.Scale(new Vector2(scaleFactor, scaleFactor));
-            rib.velocity = newV;
-
-            if (ShouldLog)
+            if (curSpeed > MAX_SPEED)
             {
-                Debug.Log(gameObject.name + " speed is " + curSpeed + " will scale down by " +
-                    scaleFactor + ". New speed is " + rib.velocity.magnitude);
-            }
+                float scaleFactor = (MAX_SPEED / curSpeed);
 
+                Vector2 newV = rib.velocity;
+                newV.Scale(new Vector2(scaleFactor, scaleFactor));
+                rib.velocity = newV;
+
+                if (ShouldLog)
+                {
+                    Debug.Log(gameObject.name + " speed is " + curSpeed + " will scale down by " +
+                        scaleFactor + ". New speed is " + rib.velocity.magnitude);
+                }
+
+            }
+            else if (curSpeed < direction.magnitude)
+            {
+                // Don't let the velocity in either axis drop below the starting value
+                //Debug.Log(gameObject.name + " has slowed down");
+                // Speed up
+                rib.AddForce(rib.velocity / 5);
+            }
         }
-        else if (curSpeed < direction.magnitude)
+        else if (foundWaypoint == true)
         {
-            // Don't let the velocity in either axis drop below the starting value
-            //Debug.Log(gameObject.name + " has slowed down");
-            // Speed up
-            rib.AddForce(rib.velocity / 5);
+            GoToDoor();
         }
     }
 
@@ -93,10 +109,17 @@ public class Baby : MonoBehaviour
         controllerScript.BabyEscaped();
     }
 
+    private void FindSuitableDoor()
+    {
+        GameObject[] waypoints = GameObject.FindGameObjectsWithTag("waypoint");
+        
+        //foreach(waypoint in waypoints)
+        //{
+        //}
+    }
+
     private void GoToDoor()
     {
-        GameObject.FindGameObjectWithTag("waypoint");
 
-        
     }
 }
