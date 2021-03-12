@@ -241,7 +241,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5675632861902656005, guid: a36a911a3f4d81c45847e2f2ada92552, type: 3}
       propertyPath: m_Name
-      value: Waypoint (1)
+      value: Top
       objectReference: {fileID: 0}
     - target: {fileID: 7715537364723536205, guid: a36a911a3f4d81c45847e2f2ada92552, type: 3}
       propertyPath: m_RootOrder
@@ -1503,7 +1503,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5675632861902656005, guid: a36a911a3f4d81c45847e2f2ada92552, type: 3}
       propertyPath: m_Name
-      value: Waypoint
+      value: Bottom
       objectReference: {fileID: 0}
     - target: {fileID: 7715537364723536205, guid: a36a911a3f4d81c45847e2f2ada92552, type: 3}
       propertyPath: m_RootOrder

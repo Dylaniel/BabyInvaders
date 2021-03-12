@@ -10,9 +10,14 @@ public class Credits : MonoBehaviour
 
     private void OnEnable()
     {
-        gameObject.transform.position = new Vector2(1.485165f, -7.562866f);
+        gameObject.transform.position = new Vector2(0, -16);
         managerScript = manager.GetComponent<Manager>();
-        Invoke("CreditsExit", 25);
+        Invoke("CreditsExit", 15);
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke("CreditsExit");
     }
 
     private void FixedUpdate()

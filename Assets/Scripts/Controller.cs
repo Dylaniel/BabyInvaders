@@ -95,7 +95,7 @@ public class Controller : MonoBehaviour
 
     private void activateFirstLevel()
     {
-        level = 1;
+        level = 5;
         activateNextLevel();
     }
 
