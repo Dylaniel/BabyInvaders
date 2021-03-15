@@ -9,7 +9,7 @@ public class Baby : MonoBehaviour
     Controller controllerScript;
     float origpeed;
     Rigidbody2D rib;
-    private float fov = 100f;
+    private float fov = 360f;
     private GameObject bestWaypoint;
     bool escaped = false;
     public bool ShouldLog = false;
@@ -20,8 +20,9 @@ public class Baby : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float directionx = Random.Range(-5f, 5f);
-        float directiony = Random.Range(-5f, 5f);
+        float max = 5;
+        float directionx = Random.Range(-max, max);
+        float directiony = Random.Range(-max, max);
         Vector2 direction = new Vector2(directionx, directiony);
 
         rib = GetComponent<Rigidbody2D>();
@@ -32,7 +33,7 @@ public class Baby : MonoBehaviour
 
         controllerScript = GameObject.Find("Controller").GetComponent<Controller>();
 
-        Invoke("FindSuitableDoor", 18f);
+        Invoke("FindSuitableDoor", 1f);
     }
 
     public void OnEnable()
@@ -53,12 +54,6 @@ public class Baby : MonoBehaviour
     {
         ManageSpeed();
         ManageDirection();
-
-        if (bestWaypoint != null)
-        {
-            Debug.DrawLine(gameObject.transform.position, 
-               bestWaypoint.transform.position, Color.red, 0f, false);
-        }
     }
 
     private void ManageSpeed()
@@ -91,8 +86,41 @@ public class Baby : MonoBehaviour
     }
 
     private void ManageDirection()
-    {
+    {/*
+        if (bestWaypoint != null)
+        {
+            Debug.DrawLine(gameObject.transform.position,
+               bestWaypoint.transform.position, Color.red, 0f, false);
 
+            Vector2 exitDirection = bestWaypoint.transform.position - gameObject.transform.position;
+
+            rib.velocity += exitDirection.normalized;
+        }*/
+        //Debug.DrawLine(Vector2.zero, rib.velocity, Color.blue);
+
+        //Debug.DrawLine(transform.position, rib.velocity, Color.cyan);
+
+        /*   Vector2 point = transform.TransformPoint(rib.velocity.x, rib.velocity.y, 0);
+           float rotation = -transform.rotation.eulerAngles.z;
+           point = rotate(point, rotation);
+           Debug.Log("Rotation: " + transform.rotation.eulerAngles.z);*/
+
+        Vector2 end = new Vector2(transform.position.x + rib.velocity.x, 
+            transform.position.y + rib.velocity.y);
+        Debug.DrawLine(transform.position, end, Color.blue);
+
+        /*Debug.DrawLine(transform.position,
+            transform.TransformDirection(rib.velocity.x, rib.velocity.y, 0),
+            Color.green);*/
+
+    }
+
+    public static Vector2 rotate(Vector2 v, float delta)
+    {
+        return new Vector2(
+            v.x * Mathf.Cos(delta) - v.y * Mathf.Sin(delta),
+            v.x * Mathf.Sin(delta) + v.y * Mathf.Cos(delta)
+        );
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -105,6 +133,7 @@ public class Baby : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         gameObject.SetActive(false);
         Destroy(gameObject);
 
@@ -128,7 +157,7 @@ public class Baby : MonoBehaviour
                 bestWaypoint = waypoint;
                 bestWaypointAngle = exitAngle;
 
-                Debug.Log("the best waypoint is" + bestWaypoint.name);
+                Debug.Log("Selected waypoint: " + bestWaypoint.name);
             }
         }
 
@@ -143,7 +172,7 @@ public class Baby : MonoBehaviour
         {
             Vector2 exitDirection = waypoint.transform.position - gameObject.transform.position;
             float exitAngle = Vector2.Angle(rib.velocity, exitDirection);
-            Debug.Log("the angle to" + waypoint.name + "is" + exitAngle);
+            Debug.Log("the angle to " + waypoint.name + " is " + exitAngle);
 
             if (exitAngle <= fov/2 )
             {

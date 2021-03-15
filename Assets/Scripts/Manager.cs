@@ -70,8 +70,11 @@ public class Manager : MonoBehaviour
         state = GameState.menu;
 
         ControllerObj.SetActive(false);
-
-        UnloadScene(currentScene);
+        
+        if (currentScene != null)
+        {
+            StartCoroutine(UnloadScene(currentScene));
+        }    
     }
 
     public void GoToPlay()
