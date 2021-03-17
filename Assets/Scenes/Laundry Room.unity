@@ -239,6 +239,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3213752398116070282, guid: a36a911a3f4d81c45847e2f2ada92552, type: 3}
+      propertyPath: m_Size.y
+      value: 0.47533226
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213752398116070282, guid: a36a911a3f4d81c45847e2f2ada92552, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.26233387
+      objectReference: {fileID: 0}
     - target: {fileID: 5675632861902656005, guid: a36a911a3f4d81c45847e2f2ada92552, type: 3}
       propertyPath: m_Name
       value: Top
@@ -287,8 +295,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a36a911a3f4d81c45847e2f2ada92552, type: 3}
 --- !u!1 &674515642
 GameObject:
@@ -1550,6 +1557,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3213752398116070282, guid: a36a911a3f4d81c45847e2f2ada92552, type: 3}
+      propertyPath: m_Size.x
+      value: 4.0862765
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213752398116070282, guid: a36a911a3f4d81c45847e2f2ada92552, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5679207
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213752398116070282, guid: a36a911a3f4d81c45847e2f2ada92552, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.030863047
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213752398116070282, guid: a36a911a3f4d81c45847e2f2ada92552, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.21603966
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213752398116070282, guid: a36a911a3f4d81c45847e2f2ada92552, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5675632861902656005, guid: a36a911a3f4d81c45847e2f2ada92552, type: 3}
       propertyPath: m_Name
       value: Bottom

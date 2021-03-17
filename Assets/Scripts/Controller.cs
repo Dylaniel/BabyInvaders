@@ -77,7 +77,7 @@ public class Controller : MonoBehaviour
         {
             spawnRate = 1f;
             
-            nBabies[0] = 1;
+            nBabies[0] = 10;
             nBabies[1] = 25;
             nBabies[2] = 30;
             nBabies[3] = 30;

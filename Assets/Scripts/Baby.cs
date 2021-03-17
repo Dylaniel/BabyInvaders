@@ -33,7 +33,7 @@ public class Baby : MonoBehaviour
 
         controllerScript = GameObject.Find("Controller").GetComponent<Controller>();
 
-        Invoke("FindSuitableDoor", 1f);
+        Invoke("FindSuitableDoor", 15f);
     }
 
     public void OnEnable()
@@ -86,41 +86,56 @@ public class Baby : MonoBehaviour
     }
 
     private void ManageDirection()
-    {/*
+    {
+        Debug.DrawLine(new Vector2(0, -1), new Vector2(0, 1), Color.white);
+        Debug.DrawLine(new Vector2(-1, 0), new Vector2(1, 0), Color.white);
+
+        Vector2 lVelocity = new Vector2(transform.position.x + rib.velocity.x, 
+            transform.position.y + rib.velocity.y);
+        Debug.DrawLine(transform.position, lVelocity, Color.blue);
+
         if (bestWaypoint != null)
         {
             Debug.DrawLine(gameObject.transform.position,
                bestWaypoint.transform.position, Color.red, 0f, false);
 
-            Vector2 exitDirection = bestWaypoint.transform.position - gameObject.transform.position;
+            Vector2 exitDirection = bestWaypoint.transform.position - 
+                gameObject.transform.position;
 
-            rib.velocity += exitDirection.normalized;
-        }*/
-        //Debug.DrawLine(Vector2.zero, rib.velocity, Color.blue);
+            float angleToDoor = AngleBetweenVector2(rib.velocity, exitDirection);
 
-        //Debug.DrawLine(transform.position, rib.velocity, Color.cyan);
+            Debug.Log("the angle is:" + angleToDoor);
 
-        /*   Vector2 point = transform.TransformPoint(rib.velocity.x, rib.velocity.y, 0);
-           float rotation = -transform.rotation.eulerAngles.z;
-           point = rotate(point, rotation);
-           Debug.Log("Rotation: " + transform.rotation.eulerAngles.z);*/
+            float mag = rib.velocity.magnitude;
 
-        Vector2 end = new Vector2(transform.position.x + rib.velocity.x, 
-            transform.position.y + rib.velocity.y);
-        Debug.DrawLine(transform.position, end, Color.blue);
+            if (angleToDoor < -5)
+            {               
+                rib.AddForce(new Vector2(exitDirection.x + .2f, exitDirection.y + .2f), ForceMode2D.Impulse);
+                //rib.AddForce(new Vector2(0, 2f));
+            }
+            else if (angleToDoor > 5)
+            {
+                rib.AddForce(new Vector2(exitDirection.x - .2f, exitDirection.y - .2f), ForceMode2D.Impulse);
+                //rib.AddForce(new Vector2(0, -2f));
+            }
 
-        /*Debug.DrawLine(transform.position,
-            transform.TransformDirection(rib.velocity.x, rib.velocity.y, 0),
-            Color.green);*/
-
+            Vector2 n = rib.velocity.normalized;
+                rib.velocity = n * mag;
+         
+            Invoke("makeWaypointNull", 10);
+        }
     }
 
-    public static Vector2 rotate(Vector2 v, float delta)
+    private void makeWaypointNull()
     {
-        return new Vector2(
-            v.x * Mathf.Cos(delta) - v.y * Mathf.Sin(delta),
-            v.x * Mathf.Sin(delta) + v.y * Mathf.Cos(delta)
-        );
+        bestWaypoint = null;
+    }
+
+    private float AngleBetweenVector2(Vector2 vec1, Vector2 vec2)
+    {
+        Vector2 vec1Rotated90 = new Vector2(-vec1.y, vec1.x);
+        float sign = (Vector2.Dot(vec1Rotated90, vec2) < 0) ? -1.0f : 1.0f;
+        return Vector2.Angle(vec1, vec2) * sign;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -133,11 +148,19 @@ public class Baby : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Room"))
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
 
-        gameObject.SetActive(false);
-        Destroy(gameObject);
+            controllerScript.BabyEscaped();
+        }    
 
-        controllerScript.BabyEscaped();
+        if (collision.gameObject.CompareTag("waypoint"))
+        {
+            bestWaypoint = null;
+            Invoke("FindSuitableDoor", 30f);
+        }
     }
 
     private void FindSuitableDoor()
