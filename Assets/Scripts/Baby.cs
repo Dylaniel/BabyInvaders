@@ -33,7 +33,7 @@ public class Baby : MonoBehaviour
 
         controllerScript = GameObject.Find("Controller").GetComponent<Controller>();
 
-        Invoke("FindSuitableDoor", 15f);
+        InvokeRepeating("FindSuitableDoor", 10, 1);
     }
 
     public void OnEnable()
@@ -105,30 +105,18 @@ public class Baby : MonoBehaviour
             float angleToDoor = AngleBetweenVector2(rib.velocity, exitDirection);
 
             Debug.Log("the angle is:" + angleToDoor);
-
+            
             float mag = rib.velocity.magnitude;
-
-            if (angleToDoor < -5)
+            if (angleToDoor < -5 || angleToDoor > 5)
             {               
-                rib.AddForce(new Vector2(exitDirection.x + .2f, exitDirection.y + .2f), ForceMode2D.Impulse);
-                //rib.AddForce(new Vector2(0, 2f));
-            }
-            else if (angleToDoor > 5)
-            {
-                rib.AddForce(new Vector2(exitDirection.x - .2f, exitDirection.y - .2f), ForceMode2D.Impulse);
-                //rib.AddForce(new Vector2(0, -2f));
+                rib.AddForce(exitDirection.normalized, ForceMode2D.Impulse);
             }
 
             Vector2 n = rib.velocity.normalized;
-                rib.velocity = n * mag;
-         
-            Invoke("makeWaypointNull", 10);
-        }
-    }
+            rib.velocity = n * mag;
 
-    private void makeWaypointNull()
-    {
-        bestWaypoint = null;
+            bestWaypoint = null;
+        }
     }
 
     private float AngleBetweenVector2(Vector2 vec1, Vector2 vec2)
@@ -158,8 +146,7 @@ public class Baby : MonoBehaviour
 
         if (collision.gameObject.CompareTag("waypoint"))
         {
-            bestWaypoint = null;
-            Invoke("FindSuitableDoor", 30f);
+            bestWaypoint = null;            
         }
     }
 
