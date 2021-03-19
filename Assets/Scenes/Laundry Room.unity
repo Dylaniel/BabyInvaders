@@ -1478,12 +1478,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1215896216271239199, guid: 6de7e4aabfbcf1249b590cb33b3496fe, type: 3}
       propertyPath: BabyPrefabs.Array.size
-      value: 15
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1215896216271239199, guid: 6de7e4aabfbcf1249b590cb33b3496fe, type: 3}
       propertyPath: BabyPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 8469175509536417900, guid: e9cb4a6ffc4df4c32aa6504b40192b56, type: 3}
+      objectReference: {fileID: 3339646368995523569, guid: 1f6585b362a97304abe4bfc7e40f1ceb, type: 3}
     - target: {fileID: 1215896216271239199, guid: 6de7e4aabfbcf1249b590cb33b3496fe, type: 3}
       propertyPath: BabyPrefabs.Array.data[1]
       value: 

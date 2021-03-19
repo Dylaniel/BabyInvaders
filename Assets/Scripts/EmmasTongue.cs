@@ -20,15 +20,7 @@ public class EmmasTongue : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D otherObject)
-    {
-        if (otherObject.gameObject.CompareTag("baby"))
-        {
-            otherObject.gameObject.SetActive(false);
-            Destroy(otherObject.gameObject);
-
-            //TODO: add code to increment score
-            controllerScript.BabyKilled();
-        }
+    {        
 
         if (!otherObject.gameObject.CompareTag("emma"))
         {

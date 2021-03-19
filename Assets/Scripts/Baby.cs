@@ -13,13 +13,17 @@ public class Baby : MonoBehaviour
     private GameObject bestWaypoint;
     bool escaped = false;
     public bool ShouldLog = false;
+    private Animator anim;
 
     AudioSource squeak;
     private Vector2 velocity;
+    private bool hit;
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = gameObject.GetComponent <Animator> ();
+
         float max = 5;
         float directionx = Random.Range(-max, max);
         float directiony = Random.Range(-max, max);
@@ -58,64 +62,69 @@ public class Baby : MonoBehaviour
 
     private void ManageSpeed()
     {
-        float curSpeed = rib.velocity.magnitude;
-
-
-        if (curSpeed > MAX_SPEED)
+        if (hit == false)
         {
-            float scaleFactor = (MAX_SPEED / curSpeed);
+            float curSpeed = rib.velocity.magnitude;
 
-            Vector2 newV = rib.velocity;
-            newV.Scale(new Vector2(scaleFactor, scaleFactor));
-            rib.velocity = newV;
-
-            if (ShouldLog)
+            if (curSpeed > MAX_SPEED)
             {
-                Debug.Log(gameObject.name + " speed is " + curSpeed + " will scale down by " +
-                    scaleFactor + ". New speed is " + rib.velocity.magnitude);
-            }
+                float scaleFactor = (MAX_SPEED / curSpeed);
 
-        }
-        else if (curSpeed < origpeed)
-        {
-            // Don't let the velocity in either axis drop below the starting value
-            //Debug.Log(gameObject.name + " has slowed down");
-            // Speed up
-            rib.AddForce(rib.velocity / 5);
+                Vector2 newV = rib.velocity;
+                newV.Scale(new Vector2(scaleFactor, scaleFactor));
+                rib.velocity = newV;
+
+                if (ShouldLog)
+                {
+                    Debug.Log(gameObject.name + " speed is " + curSpeed + " will scale down by " +
+                        scaleFactor + ". New speed is " + rib.velocity.magnitude);
+                }
+
+            }
+            else if (curSpeed < origpeed)
+            {
+                // Don't let the velocity in either axis drop below the starting value
+                //Debug.Log(gameObject.name + " has slowed down");
+                // Speed up
+                rib.AddForce(rib.velocity / 5);
+            }
         }
     }
 
     private void ManageDirection()
     {
-        Debug.DrawLine(new Vector2(0, -1), new Vector2(0, 1), Color.white);
-        Debug.DrawLine(new Vector2(-1, 0), new Vector2(1, 0), Color.white);
-
-        Vector2 lVelocity = new Vector2(transform.position.x + rib.velocity.x, 
-            transform.position.y + rib.velocity.y);
-        Debug.DrawLine(transform.position, lVelocity, Color.blue);
-
-        if (bestWaypoint != null)
+        if (hit == false)
         {
-            Debug.DrawLine(gameObject.transform.position,
-               bestWaypoint.transform.position, Color.red, 0f, false);
+            Debug.DrawLine(new Vector2(0, -1), new Vector2(0, 1), Color.white);
+            Debug.DrawLine(new Vector2(-1, 0), new Vector2(1, 0), Color.white);
 
-            Vector2 exitDirection = bestWaypoint.transform.position - 
-                gameObject.transform.position;
+            Vector2 lVelocity = new Vector2(transform.position.x + rib.velocity.x,
+                transform.position.y + rib.velocity.y);
+            Debug.DrawLine(transform.position, lVelocity, Color.blue);
 
-            float angleToDoor = AngleBetweenVector2(rib.velocity, exitDirection);
+            if (bestWaypoint != null)
+            {
+                Debug.DrawLine(gameObject.transform.position,
+                   bestWaypoint.transform.position, Color.red, 0f, false);
 
-            Debug.Log("the angle is:" + angleToDoor);
-            
-            float mag = rib.velocity.magnitude;
-            if (angleToDoor < -5 || angleToDoor > 5)
-            {               
-                rib.AddForce(exitDirection.normalized, ForceMode2D.Impulse);
+                Vector2 exitDirection = bestWaypoint.transform.position -
+                    gameObject.transform.position;
+
+                float angleToDoor = AngleBetweenVector2(rib.velocity, exitDirection);
+
+                Debug.Log("the angle is:" + angleToDoor);
+
+                float mag = rib.velocity.magnitude;
+                if (angleToDoor < -5 || angleToDoor > 5)
+                {
+                    rib.AddForce(exitDirection.normalized, ForceMode2D.Impulse);
+                }
+
+                Vector2 n = rib.velocity.normalized;
+                rib.velocity = n * mag;
+
+                bestWaypoint = null;
             }
-
-            Vector2 n = rib.velocity.normalized;
-            rib.velocity = n * mag;
-
-            bestWaypoint = null;
         }
     }
 
@@ -131,6 +140,23 @@ public class Baby : MonoBehaviour
         if (squeak.isPlaying == false)
         {
             squeak.Play();
+        }        
+
+        if (collision.gameObject.tag == "tongue")
+        {
+            hit = true;
+
+            gameObject.GetComponent<Collider2D>().enabled = false;
+
+            if (anim != null)
+            {
+                anim.SetTrigger("dead");
+                Invoke("aMethodToDestroy", 1);
+            }
+            else
+            {
+                aMethodToDestroy();
+            }
         }
     }
 
@@ -142,12 +168,19 @@ public class Baby : MonoBehaviour
             Destroy(gameObject);
 
             controllerScript.BabyEscaped();
-        }    
+        }
 
         if (collision.gameObject.CompareTag("waypoint"))
         {
             bestWaypoint = null;            
         }
+    }
+
+    private void aMethodToDestroy()
+    {                
+        gameObject.SetActive(false);
+        Destroy(gameObject);            
+        controllerScript.BabyKilled();        
     }
 
     private void FindSuitableDoor()

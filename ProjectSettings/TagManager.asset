@@ -11,6 +11,7 @@ TagManager:
   - Root
   - controller
   - waypoint
+  - tongue
   layers:
   - Default
   - TransparentFX
