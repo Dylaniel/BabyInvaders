@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4082878452669453789}
   - component: {fileID: 4034323634341540261}
   - component: {fileID: 4765689378257448750}
+  - component: {fileID: 1116003369664291959}
   m_Layer: 11
   m_Name: brownweinerdog
   m_TagString: baby
@@ -462,3 +463,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1116003369664291959
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7601494142232398316}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6f823b5695ed2d54d9ce8c6af9eb4d58, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

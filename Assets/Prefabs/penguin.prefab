@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 365034348926135849}
   - component: {fileID: 677539964817157863}
   - component: {fileID: 1478464602430602435}
+  - component: {fileID: -2922297843444221012}
   m_Layer: 11
   m_Name: penguin
   m_TagString: baby
@@ -571,3 +572,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &-2922297843444221012
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456504446637205784}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6f823b5695ed2d54d9ce8c6af9eb4d58, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

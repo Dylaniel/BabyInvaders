@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -6627400894924472506}
   - component: {fileID: -180061555437839719}
   - component: {fileID: 4628097713538881224}
+  - component: {fileID: -8539535093448098777}
   m_Layer: 11
   m_Name: GreenDog
   m_TagString: baby
@@ -353,3 +354,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &-8539535093448098777
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7076122944399865593}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6f823b5695ed2d54d9ce8c6af9eb4d58, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

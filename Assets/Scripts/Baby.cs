@@ -142,11 +142,13 @@ public class Baby : MonoBehaviour
             squeak.Play();
         }        
 
-        if (collision.gameObject.tag == "tongue")
+        if (collision.gameObject.tag == "tongue" && hit == false)
         {
             hit = true;
 
-            gameObject.GetComponent<Collider2D>().enabled = false;
+            //gameObject.GetComponent<Collider2D>().enabled = false;
+
+            //rib.velocity = new Vector2(0, 0);
 
             if (anim != null)
             {
