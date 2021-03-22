@@ -54,7 +54,7 @@ public class Baby : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         ManageSpeed();
         ManageDirection();

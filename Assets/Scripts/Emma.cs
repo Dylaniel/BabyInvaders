@@ -13,7 +13,7 @@ public class Emma : MonoBehaviour
     public AudioClip whimper;
     public AudioClip lick;
 
-    const float SPEED = 100f;
+    const float SPEED = 250f;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +26,7 @@ public class Emma : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float h = Input.GetAxis("Horizontal") * SPEED;
         float v = Input.GetAxis("Vertical") * SPEED;
@@ -60,7 +60,7 @@ public class Emma : MonoBehaviour
 
     private bool allowedFire()
     {
-        if(Time.time >= lastFiredTime + .75f)
+        if(Time.time >= lastFiredTime + .65f)
         {
             return true;
         }

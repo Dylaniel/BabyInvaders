@@ -6,7 +6,7 @@ public class EmmasTongue : MonoBehaviour
 {
     Controller controllerScript;
 
-    private float speed = .10f;
+    private float speed = .2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +14,7 @@ public class EmmasTongue : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.Translate(speed, 0, 0);
     }

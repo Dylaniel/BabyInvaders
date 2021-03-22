@@ -93,12 +93,6 @@ public class Controller : MonoBehaviour
         }
     }
 
-    private void activateFirstLevel()
-    {
-        level = 1;
-        activateNextLevel();
-    }
-
     void OnGUI()
     {
         if (managerScript.CurrentState != GameState.paused)
@@ -139,7 +133,7 @@ public class Controller : MonoBehaviour
         basket.ApplyDifficulty(nBabies[level-2],spawnRate);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (sceneLoading != null && sceneLoading.isDone)
         {
@@ -147,6 +141,12 @@ public class Controller : MonoBehaviour
             FindRoot();
             sceneLoading = null;
         }
+    }
+
+    private void activateFirstLevel()
+    {
+        level = 1;
+        activateNextLevel();
     }
 
     private void activateNextLevel()

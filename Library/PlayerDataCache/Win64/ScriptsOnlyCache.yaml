@@ -4,6 +4,7 @@ ScriptsOnlyBuild:
     - Baby
     - Basket
     - Controller
+    - Credits
     - Emma
     - EmmasTongue
     - Manager
@@ -17,6 +18,14 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.TileDragAndDropManager
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -39,8 +48,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 4
       Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
     - Class: 28
@@ -51,11 +58,21 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 60
       Script: {instanceID: 0}
+    - Class: 61
+      Script: {instanceID: 0}
     - Class: 62
       Script: {instanceID: 0}
     - Class: 68
       Script: {instanceID: 0}
-    - Class: 81
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -82,8 +99,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 4
       Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
     - Class: 28
@@ -100,7 +115,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 68
       Script: {instanceID: 0}
-    - Class: 81
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -127,8 +150,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 4
       Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
     - Class: 28
@@ -145,7 +166,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 68
       Script: {instanceID: 0}
-    - Class: 81
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -172,8 +201,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 4
       Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
     - Class: 28
@@ -190,7 +217,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 68
       Script: {instanceID: 0}
-    - Class: 81
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -255,6 +290,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 15158}
     - Class: 114
       Script: {instanceID: 15214}
+    - Class: 114
+      Script: {instanceID: 15262}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -456,7 +493,7 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: a8d4a30ea8be1be3c3bc461d0f8461df
+      Hash: 741ebed39b453ce74727a6eb9040aa5c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Emma
@@ -474,7 +511,7 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
-      Hash: 5e35f309aa0782fea1291eea054e1961
+      Hash: ae2a558bc7f0a29e73381ef2443b855c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Manager
@@ -600,7 +637,7 @@ ScriptsOnlyBuild:
     className: SignalReceiver
   - hash:
       serializedVersion: 2
-      Hash: fee10f37b69d61f4ce1faec15a4fdc61
+      Hash: 8df4859fac07116ce5e5c4fcca6e39e3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Controller
@@ -690,7 +727,7 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
-      Hash: 6a7efe0985eea38e689ed14f0dd0b9e2
+      Hash: aaf15d6a4dcf9f2c2287e1244b9d2d1a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Basket
@@ -790,6 +827,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: c6d30308ae869e51a84dec6423e8b6f0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Credits
   platform: 19
   scenePathNames:
   - Assets/Scenes/Manager.unity
@@ -797,4 +840,5 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Living Room.unity
   - Assets/Scenes/Kitchen Room.unity
   - Assets/Scenes/Hallway Room.unity
-  playerPath: C:/Users/xboxl/BabyInvadersBuilds/Windows/Baby Invaders.exe
+  playerPath: C:/Users/xboxl/Dropbox/CompuscholarUnityClass-Shared/BabyInvadersBuilds/Windows/Baby
+    Invaders.exe
