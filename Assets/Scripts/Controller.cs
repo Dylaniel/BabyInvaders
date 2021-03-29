@@ -2,40 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Controller : MonoBehaviour
 {
-    public Text scoreText;
-    
-    public Text levelText;
-
-    public Text gameOverText, livesText;
+    public Text scoreText, levelText, gameOverText, livesText;
 
     private int level;
-
     private int score;
-
     public bool gameOver;
+    private float spawnRate;
+    public int [] nBabies;
 
+    public GameObject root;
+    public GameObject[] babies;
     public GameObject heartPrefab;
-
-    private List<GameObject> lives;
-
-    public GameObject[] levels;
+    private List<GameObject> lives = new List<GameObject>();
 
     private Basket basket;
+    
+    public GameObject manager;
+    Manager managerScript;
+    private AsyncOperation sceneLoading;
 
-
-
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        gameOverText.text = "";
+        nBabies = new int[4];
 
+        managerScript = manager.GetComponent<Manager>();
+
+        gameOverText.text = "";
         gameOver = false;
         score = 0;
-        level = -1;
-        lives = new List<GameObject>();
-
+        
         Vector2 textPosition = livesText.transform.position;
         Vector2 pos = new Vector2(textPosition.x + .25f, textPosition.y);
         for (int i = 0; i < 5; i++)
@@ -43,51 +41,144 @@ public class Controller : MonoBehaviour
             GameObject newLife = Instantiate(heartPrefab, pos, Quaternion.identity);
             lives.Add(newLife);
             pos.x += newLife.GetComponent<Renderer>().bounds.size.x;
+
+            newLife.transform.parent = managerScript.HUD.transform;
         }
 
-        foreach (GameObject goLevel in levels)
+        activateFirstLevel();
+
+        Debug.Log("controller is enabled");
+    }
+
+    private void OnDisable()
+    {
+        foreach (GameObject life in lives)
         {
-            goLevel.SetActive(false);
+            Destroy(life);
         }
 
-        activateNextLevel();
+        lives.Clear();
+
+        Debug.Log("controller is disabled");
+    }
+
+    public void SetDifficulty(string difficulty)
+    {
+        if (difficulty == "Easy")
+        {
+            spawnRate = 1.5f;
+
+            nBabies[0] = 10;
+            nBabies[1] = 20;
+            nBabies[2] = 25;
+            nBabies[3] = 25;
+        }
+        else if (difficulty == "Medium")
+        {
+            spawnRate = 1f;
+            
+            nBabies[0] = 10;
+            nBabies[1] = 25;
+            nBabies[2] = 30;
+            nBabies[3] = 30;
+        }
+        else if (difficulty == "Hard")
+        {
+            spawnRate = .75f;
+
+            nBabies[0] = 10;
+            nBabies[1] = 30;
+            nBabies[2] = 40;
+            nBabies[3] = 40;
+        }
+    }
+
+    void OnGUI()
+    {
+        if (managerScript.CurrentState != GameState.paused)
+        {
+            if (Event.current.Equals(Event.KeyboardEvent(KeyCode.Escape.ToString())))
+            {
+                Debug.Log("Escape key is pressed.");
+
+                managerScript.ShowPause();
+
+                
+                babies = GameObject.FindGameObjectsWithTag("baby");
+            }
+        }
+    }
+
+    public void Pause()
+    {
+        root.SetActive(false);
+    }
+
+    public void UnPause()
+    {
+        root.SetActive(true);
+    }
+
+    private void FindRoot()
+    {
+        root = GameObject.FindGameObjectWithTag("Root");
     }
 
     private void findBasket()
     {
-        GameObject currentLevel = levels[level];
-        basket = GameObject.Find(currentLevel.name + "/Basket").GetComponent<Basket>();
+        GameObject basketObject = GameObject.Find("Basket");
+
+        basket = basketObject.GetComponent<Basket>();
+
+        basket.ApplyDifficulty(nBabies[level-2],spawnRate);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        if (Input.GetKey("escape"))
+        if (sceneLoading != null && sceneLoading.isDone)
         {
-            Application.Quit();
+            findBasket();
+            FindRoot();
+            sceneLoading = null;
         }
+    }
+
+    private void activateFirstLevel()
+    {
+        level = 1;
+        activateNextLevel();
     }
 
     private void activateNextLevel()
     {
-        if (level < (levels.Length - 1))
+        if (level <= 4)
         {
-            if (level >= 0)
+            if (level == 1)
             {
-                levels[level].SetActive(false);
+                sceneLoading = managerScript.ChangeScene("Laundry Room");
+            }
+            else if (level == 2)
+            {
+                sceneLoading = managerScript.ChangeScene("Kitchen Room");
+            }
+            else if (level == 3)
+            {
+                sceneLoading = managerScript.ChangeScene("Living Room");
+            }
+            else if (level == 4)
+            {
+                sceneLoading = managerScript.ChangeScene("Hallway Room");
             }
 
             level++;
-            levels[level].SetActive(true);
-            levelText.text = "Level: " + (level + 1);
-
-            findBasket();
+            levelText.text = "Level: " + (level - 1);
         }
         else
         {
             gameOverText.text = "you won";
             Debug.Log("you won!!");
             gameOver = true;
+            managerScript.TheGameIsOver();
         }
     }
 

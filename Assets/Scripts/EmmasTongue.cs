@@ -6,7 +6,7 @@ public class EmmasTongue : MonoBehaviour
 {
     Controller controllerScript;
 
-    private float speed = .10f;
+    private float speed = .2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,21 +14,13 @@ public class EmmasTongue : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.Translate(speed, 0, 0);
     }
 
     private void OnCollisionEnter2D(Collision2D otherObject)
-    {
-        if (otherObject.gameObject.CompareTag("baby"))
-        {
-            otherObject.gameObject.SetActive(false);
-            Destroy(otherObject.gameObject);
-
-            //TODO: add code to increment score
-            controllerScript.BabyKilled();
-        }
+    {        
 
         if (!otherObject.gameObject.CompareTag("emma"))
         {
