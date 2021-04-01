@@ -1,13 +1,8 @@
-Library/ArtifactDB
-Library/Artifacts
-Library/ShaderCache*
-Library/SourceAssetDB*
-Library/PackageManager/
-Library/StateCache/
-Library/PackageCache/
-Temp/
+Library
+Temp
 
 *.log
 *.dll
 *.pdb
-obj/
+obj
+builds
