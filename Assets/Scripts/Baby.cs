@@ -112,7 +112,7 @@ public class Baby : MonoBehaviour
 
                 float angleToDoor = AngleBetweenVector2(rib.velocity, exitDirection);
 
-                Debug.Log("the angle is:" + angleToDoor);
+                // Debug.Log("the angle is:" + angleToDoor);
 
                 float mag = rib.velocity.magnitude;
                 if (angleToDoor < -5 || angleToDoor > 5)
@@ -202,7 +202,7 @@ public class Baby : MonoBehaviour
                 bestWaypoint = waypoint;
                 bestWaypointAngle = exitAngle;
 
-                Debug.Log("Selected waypoint: " + bestWaypoint.name);
+                // Debug.Log("Selected waypoint: " + bestWaypoint.name);
             }
         }
 
@@ -217,16 +217,16 @@ public class Baby : MonoBehaviour
         {
             Vector2 exitDirection = waypoint.transform.position - gameObject.transform.position;
             float exitAngle = Vector2.Angle(rib.velocity, exitDirection);
-            Debug.Log("the angle to " + waypoint.name + " is " + exitAngle);
+            // Debug.Log("the angle to " + waypoint.name + " is " + exitAngle);
 
             if (exitAngle <= fov/2 )
             {
                 elligibleWaypoints.Add(waypoint);
             }
-            else
-            {
-                Debug.Log("no elligible waypoints found");
-            }
+            // else
+            // {
+            //     Debug.Log("no elligible waypoints found");
+            // }
         }
         return elligibleWaypoints;
     }

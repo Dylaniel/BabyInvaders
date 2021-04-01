@@ -19,7 +19,7 @@ public class Basket : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("basket starting");
+        // Debug.Log("basket starting");
     }
 
     private void OnDisable()
@@ -55,7 +55,7 @@ public class Basket : MonoBehaviour
             int babySelected = Random.Range(0, BabyPrefabs.Length);
 
             //Debug.Log("the baby is: " + babySelected);
-            Debug.Log("There are " + numBabies + "babies left");
+            // Debug.Log("There are " + numBabies + " babies left");
 
             GameObject newBaby = Instantiate(BabyPrefabs[babySelected],
                 transform.position, transform.rotation);

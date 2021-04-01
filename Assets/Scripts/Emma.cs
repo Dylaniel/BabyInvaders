@@ -39,8 +39,16 @@ public class Emma : MonoBehaviour
         if (controllerScript.gameOver == false)
         {
             rib.AddForce(new Vector2(h, v));
+        }   
+    }
 
-            if (Input.GetKeyDown("space") && allowedFire())
+    void OnGUI()
+    {
+        Event e = Event.current;
+        if (e.isKey)
+        {
+            Debug.Log("Detected key code: " + e.keyCode);
+            if (Event.current.Equals(Event.KeyboardEvent(KeyCode.Space.ToString())) && allowedFire())
             {
                 Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
                 //adjust the position of the tongue so it matches the sprite
@@ -55,7 +63,8 @@ public class Emma : MonoBehaviour
                     audioSource.Play();
                 }
             }
-        }   
+
+        }
     }
 
     private bool allowedFire()
